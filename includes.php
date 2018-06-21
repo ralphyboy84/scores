@@ -11,7 +11,7 @@
     require_once("focus/sessionauthmp.php");   
 //}
 
-$_SESSION['usercookie'] = 1342120;
+//$_SESSION['usercookie'] = 1342120;
 $usercookie = $_SESSION['usercookie'];
 
 ?>

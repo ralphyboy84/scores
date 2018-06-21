@@ -90,7 +90,7 @@ class Leaderboard
                         $movement = "=";   
                     }
                     
-                    $displayArray[] = "<tr class='userRow' id='".$userObj->getUser()."'><td>".$x."</td><td>".$userName."</td><td>".$userObj->getPointsTotal()."</td></tr>";   
+                    $displayArray[] = "<tr class='userRow' id='".$userObj->getUser()."'><td>".$x."</td><td>".$userName."</td><td>".$userObj->getPointsTotal()."</td><td>$movement</td></tr>";   
                     $x++;
                 }
             }
@@ -103,6 +103,18 @@ class Leaderboard
         } else {
             return "The games have not started yet so there is no leaderboard to display!";   
         }
+    }
+
+    public function generateLeaderHistory()
+    {
+        $sql = "
+        SELECT *
+        FROM history, users
+        WHERE users.id = history.userid
+        ";
+
+        $dbObject = $this->getDbObject();
+        return $dbObject->performSelectQuery($sql);
     }
 }
 

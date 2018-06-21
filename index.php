@@ -11,7 +11,7 @@ require_once("classes/CustomException.class.php");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/missingpersons/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/styles.css">
 <body>
     <!-- Navbar (sit on top) -->
@@ -66,7 +66,9 @@ EOHTML;
 
 <!-- Container (Portfolio Section) -->
 <div class="w3-content w3-container w3-padding-64">
+<canvas id='leaderhistory'></canvas>
   <h3 class="w3-center">LEADERBOARD</h3>
+  
     <?php
 
     require_once("classes/Database.class.php");
@@ -164,6 +166,6 @@ EOHTML;
 <script src='/AdminLTE-2.3.0/plugins/datatables/jquery.dataTables.min.js'></script>
 <script src='/AdminLTE-2.3.0/plugins/datatables/dataTables.bootstrap.min.js'></script>
 <script src='/AdminLTE-2.3.0/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js'></script>
-
+<script src='/AdminLTE-2.3.0/plugins/chartjs/Chart2.4.0.min.js'></script>
 </body>
 </html>

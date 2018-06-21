@@ -106,6 +106,74 @@ $(document).ready(function() {
       $("#matchInfoDiv").html(html);
     });
   });
+
+  $.getJSON(
+    "/scores/ajax/leaderhistory.php",
+    function(json) {
+      var chartLabels = Array();
+      var chartData = Array();
+
+
+      if (json) {
+        $.each(json.games, function(key, vals) {
+          chartLabels.push(vals);
+        });
+
+        var dataset = Array();
+
+        $.each(json.users, function(key, vals) {
+          dataset.push({
+            data: vals,
+            label: key,
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: getRandomColor(),
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10
+          })
+        });
+      }
+
+      var config = {
+        type: "line",
+        data: {
+          labels: chartLabels,
+          datasets: dataset
+        },
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                stepSize: 1,
+                max:21,
+                min: 1,
+                reverse: true,
+                start: 21
+              }
+            }]
+          },
+          legend: {
+            display: true
+          }
+        }
+      };
+
+      var ctx = document.getElementById("leaderhistory").getContext("2d");
+      var myChart = new Chart(ctx, config);
+    }
+  );
 });
 
 // Change style of navbar on scroll
@@ -127,4 +195,13 @@ function myFunction() {
       ""
     );
   }
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
